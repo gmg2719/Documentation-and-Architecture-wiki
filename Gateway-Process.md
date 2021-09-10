@@ -1,9 +1,12 @@
-The **Gateway Process** presents the heart of OBECA. Its main task is to provide the best available content to the (internal or external) application at any time. If available, it combines content from (mobile) broadband, WiFi with the 5G BC content from the *Receive Process* using an advanced decision logic. The content is presented to the applications in form of an intelligent edge cache ready for pick up via http(s).
-
+## Table of content
+* <a href="#Description"> Description</a>
 * <a href="#How-it-works"> How it works</a>
 * <a href="#Installation"> Installation</a>
 * <a href="#run-the-gateway-process"> Run the *Gateway Process*</a>
 * <a href="#Configuration"> Configuration</a>
+
+## Description
+The **Gateway Process** presents the heart of OBECA. Its main task is to provide the best available content to the (internal or external) application at any time. If available, it combines content from (mobile) broadband, WiFi with the 5G BC content from the *Receive Process* using an advanced decision logic. The content is presented to the applications in form of an intelligent edge cache ready for pick up via http(s).
 
 <img src="https://github.com/5G-MAG/Documentation-and-Architecture/blob/main/media/wiki/concept-gp.png">
 
