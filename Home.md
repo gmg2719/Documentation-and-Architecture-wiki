@@ -26,6 +26,6 @@ In case you have any **questions**, need **support** during installation/running
 3. [Install](Gateway-Process#installation) the *Gateway Process* (in case your payload contains HLS or DASH)
 3. Optional: 
    * [Install](GUI#installation) the *GUI* (in case you use a display for OBECA)
-   * Install the *Webinterface* (in case you connect via local network to OBECA)
+   * [Install](Webinterface#installation) the *Webinterface* (in case you connect via local network to OBECA)
 4. [Run](Receive-Process#run-the-receive-process) the *Receive Process* - optional: [*Gateway Process*](Gateway-Process#run-the-gateway-process), [*GUI*](GUI#run-the-gui), *Webinterface*
 
