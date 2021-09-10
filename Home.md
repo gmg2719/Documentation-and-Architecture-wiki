@@ -14,7 +14,7 @@ OBECA consists of five different repositories:
 * **[GUI](GUI)** [Repository](https://github.com/5G-MAG/obeca-gui)
 * **[Webinterface](Webinterface)** [Repository](https://github.com/5G-MAG/obeca-web-interface)
 
-<p align="center"><img src="https://github.com/5G-MAG/Documentation-and-Architecture/blob/main/media/wiki/concept.png"></p>
+<img src="https://github.com/5G-MAG/Documentation-and-Architecture/blob/main/media/wiki/concept.png">
 
 
 In case you have any **questions**, need **support** during installation/running OBECA or simply want to **contribute** to the project, please contact **[obeca@ors.at](mailto:obeca@ors.at)**.
