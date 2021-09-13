@@ -15,7 +15,7 @@ The *Receive Process* builds the lower part of OBECA. Its main task is to conver
 
 <img src="https://github.com/5G-MAG/Documentation-and-Architecture/blob/main/media/wiki/concept-rp.png">
 
-In case you have any **questions**, need **support** during installation/running OBECA or simply want to **contribute** to the project, please contact **[obeca@ors.at](mailto:obeca@ors.at)**.
+In case you have any **questions**, need **support** during installation/running OBECA or simply want to **contribute** to the project, please contact **[reference-tools@5g-mag.com](mailto:reference-tools@5g-mag.com)**.
 
 ***
 ## How it works
