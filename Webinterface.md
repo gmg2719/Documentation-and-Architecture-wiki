@@ -12,7 +12,7 @@ as the [GUI](https://github.com/5G-MAG/Documentation-and-Architecture/wiki/GUI),
 is accessible via http(s). Thus it works well for remote monitoring any OBECA process.
 
 In case you have any **questions**, need **support** during installation/running OBECA or simply want to **contribute**
-to the project, please contact **[obeca@ors.at](mailto:obeca@ors.at)**.
+to the project, please contact **[reference-tools@5g-mag.com](mailto:reference-tools@5g-mag.com)**.
 ***
 
 ## How it works
