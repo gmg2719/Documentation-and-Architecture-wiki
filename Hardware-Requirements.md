@@ -12,7 +12,7 @@ sample files are used - an USB 3.0 port is necessary. Furthermore, HDMI, Wifi, L
 files,...) is recommended.
 
 If you want to be sure that everything is working, we recommend to use our reference system.
-> **Note** We would appreciate if you let us know about your setup to list it below. Drop us a mail [obeca@ors.at](mailto:obeca@ors.at).
+> **Note** We would appreciate if you let us know about your setup to list it below. Drop us a mail [reference-tools@5g-mag.com](mailto:reference-tools@5g-mag.com).
 
 ## Supported SDR
 
@@ -30,7 +30,7 @@ and to your antenna via SMA connector.
   160 EUR
 * BladeRF can be ordered e.g. at [nuand](https://www.nuand.com/product/bladeRF-xA4) for around 480 EUR.
 
-> **Note** If you are using another SDR, please let us know that we can update the list above. Drop us a mail [obeca@ors.at](mailto:obeca@ors.at).
+> **Note** If you are using another SDR, please let us know that we can update the list above. Drop us a mail [reference-tools@5g-mag.com](mailto:reference-tools@5g-mag.com).
 
 > **Note** If you only want to test with sample files, a SDR is NOT required.
 
@@ -38,7 +38,7 @@ and to your antenna via SMA connector.
 
 We recommend to use [Ubuntu 20.04 LTS (64 bit)](https://ubuntu.com/), but if you build everything from source, also
 other OS should work (e.g., Ubuntu 18, Debian, Raspbian...)
-> **Note** We would appreciate if you let us know about your setup to list it below. Drop us a mail [obeca@ors.at](mailto:obeca@ors.at).
+> **Note** We would appreciate if you let us know about your setup to list it below. Drop us a mail [reference-tools@5g-mag.com](mailto:reference-tools@5g-mag.com).
 
 ## Reference setups
 
