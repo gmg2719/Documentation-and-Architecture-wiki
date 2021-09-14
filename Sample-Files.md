@@ -21,4 +21,4 @@ In order to support application developers as well as OBECA contributors for tes
 
 > Note: The sample files were captured in July 2021 directly on the transmitter output. An mp4 file of the movie [Big Buck Bunny](https://www.bigbuckbunny.org) (published under the [Creative Commons Attribution 3.0 license](https://creativecommons.org/licenses/by/3.0/), (c) copyright 2008, Blender Foundation / [www.bigbuckbunny.org](https://www.bigbuckbunny.org)) was looped to create RTP and HLS streams. Play duration of each sample file is 3-5 minutes.
 
-If you need any further sample files, please get in contact with us **[obeca@ors.at](mailto:obeca@ors.at)**.
+If you need any further sample files, please get in contact with us **[reference-tools@5g-mag.com](mailto:reference-tools@5g-mag.com)**.
