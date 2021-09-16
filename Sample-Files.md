@@ -1,5 +1,6 @@
 In order to support application developers as well as OBECA contributors for testing their improvements, ORS captured sample files ("raw data" = digitized I/Q data at [LimeSDR Mini](https://www.crowdsupply.com/lime-micro/limesdr-mini/) output) directly from a 5G BC transmitter. You can also capture sample files using the [capture command of the Receive Process](receive-process#Capture-and-running-of-sample-files).
 
+#### RTP payload:
 3 MHz bandwidth, subcarrier spacing 1.25 kHz, Modulation Coding Scheme 16 (16QAM) with Payload 3.5 Mbit RTP:
 * [3MHz_MCS16_1kHz25_RTP_3.5.raw](https://obeca-testdaten.s3.eu-central-1.amazonaws.com/3MHz_MCS16_1kHz25_RTP_3.5.raw) (7.9 GB)
 
@@ -18,6 +19,24 @@ In order to support application developers as well as OBECA contributors for tes
 
 10 MHz bandwidth, subcarrier spacing 1.25 kHz, Modulation Coding Scheme 16 (16QAM) with Payload 3.5 Mbit RTP:
 * [10MHz_MCS16_1kHz25_RTP_3.5.raw](https://obeca-testdaten.s3.eu-central-1.amazonaws.com/10MHz_MCS16_1kHz25_RTP_3.5.raw) (21.6 GB)
+
+#### HLS payload:
+
+3 MHz bandwidth, subcarrier spacing 1.25 kHz, Modulation Coding Scheme 16 (16QAM) with Payload HLS:
+* [3MHz_MCS16_1kHz25_HLS_q6a.raw](https://obeca-testdaten.s3.eu-central-1.amazonaws.com/3MHz_MCS16_1kHz25_HLS_q6a.raw) (5.9 GB)
+
+5 MHz bandwidth, subcarrier spacing 1.25 kHz, Modulation Coding Scheme 16 (16QAM) with Payload HLS:
+* [5MHz_MCS16_1kHz25_HLS_q6a.raw](https://obeca-testdaten.s3.eu-central-1.amazonaws.com/5MHz_MCS16_1kHz25_HLS_q6a.raw) (12.2 GB)
+
+8 MHz bandwidth, subcarrier spacing 1.25 kHz, Modulation Coding Scheme 16 (16QAM) with Payload HLS:
+* [8MHz_MCS16_1kHz25_HLS_q6a.raw](https://obeca-testdaten.s3.eu-central-1.amazonaws.com/8MHz_MCS16_1kHz25_HLS_q6a.raw) (25.4 GB)
+
+10 MHz bandwidth, subcarrier spacing 1.25 kHz, Modulation Coding Scheme 16 (16QAM) with Payload HLS:
+* [10MHz_MCS16_1kHz25_HLS_q6a.raw](https://obeca-testdaten.s3.eu-central-1.amazonaws.com/10MHz_MCS16_1kHz25_HLS_q6a.raw) (17.6 GB)
+
+#### DASH payload:
+5 MHz bandwidth, subcarrier spacing 1.25 kHz, Modulation Coding Scheme 16 (16QAM) with Payload DASH:
+* [5MHz_MCS16_1kHz25_DASH_q6a.raw](https://obeca-testdaten.s3.eu-central-1.amazonaws.com/5MHz_MCS16_1kHz25_DASH_q6a.raw) (10.4 GB)
 
 > Note: The sample files were captured in July 2021 directly on the transmitter output. An mp4 file of the movie [Big Buck Bunny](https://www.bigbuckbunny.org) (published under the [Creative Commons Attribution 3.0 license](https://creativecommons.org/licenses/by/3.0/), (c) copyright 2008, Blender Foundation / [www.bigbuckbunny.org](https://www.bigbuckbunny.org)) was looped to create RTP and HLS streams. Play duration of each sample file is 3-5 minutes.
 
