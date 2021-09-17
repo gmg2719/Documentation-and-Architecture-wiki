@@ -1,6 +1,6 @@
-# Welcome to the OBECA project<a name="to-the-top"></a>
+# Welcome to the 5G-MAG reference tools project<a name="to-the-top"></a>
 
-Open Broadcast Edge Cache Appliance (OBECA) is a platform to
+The 5G-MAG reference tools are a platform to
 
 * **receive 5G broadcast** (5G BC) in dedicated mode, i.e. using 100 % downlink capacity (also known as EnTV/FeMBMS in 3GPP Rel.14 and LTE-based 5G Terrestrial Broadcast in 3GPP Rel.16)
 * **combine** 5G BC **with** common (5G) (mobile) **broadband**, process and **cache** it for applications
