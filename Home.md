@@ -9,8 +9,8 @@ The 5G-MAG reference tools are a platform to
 More general information about 5G Broadcast can be found on the homepage of <a href="https://www.ors.at/en/5g-broadcast/" target="_blank">Austrian Broadcasting Services</a>.
 
 The 5G-MAG reference tools consist of five different repositories:
-* [Receive Process](Receive-Process) - [Repository](https://github.com/5G-MAG/rt-mbms-modem) 
-* [Gateway Process](Gateway-Process) - [Repository](https://github.com/5G-MAG/rt-mbms-mw)
+* [MBMS Modem](mbms-modem) - [Repository](https://github.com/5G-MAG/rt-mbms-modem) 
+* [MBMS Middleware](mbms-middleware) - [Repository](https://github.com/5G-MAG/rt-mbms-mw)
 * [GUI](GUI) - [Repository](https://github.com/5G-MAG/rt-gui)
 * [Webinterface](Webinterface) - [Repository](https://github.com/5G-MAG/rt-wui)
 * [Application Process](Application-Process)
@@ -23,10 +23,10 @@ In case you have any **questions**, need **support** during installation/running
 ***
 ## Quickstart
 1. Check the [hardware & SDR requirements](Hardware-Requirements) (see our [reference setups](Hardware-Requirements#reference-setups))
-2. [Install](Receive-Process#installation) the *Receive Process*
-3. [Install](Gateway-Process#installation) the *Gateway Process* (in case your payload contains HLS or DASH)
+2. [Install](mbms-modem#installation) the *MBMS Modem*
+3. [Install](mbms-middleware#installation) the *MBMS Middleware* (in case your payload contains HLS or DASH)
 3. Optional: 
-   * [Install](GUI#installation) the *GUI* (in case you use a display for OBECA)
-   * [Install](Webinterface#installation) the *Webinterface* (in case you connect via local network to OBECA)
-4. [Run](Receive-Process#run-the-receive-process) the *Receive Process* - optional: [*Gateway Process*](Gateway-Process#run-the-gateway-process), [*GUI*](GUI#run-the-gui), [*Webinterface*](Webinterface#run-the-webinterface)
+   * [Install](GUI#installation) the *GUI* 
+   * [Install](Webinterface#installation) the *Webinterface* 
+4. [Run](mbms-modem#run-the-mbms-modem) the *MBMS Modem* - optional: [*MBMS Middleware*](mbms-middleware#run-the-mbms-middleware), [*GUI*](GUI#run-the-gui), [*Webinterface*](Webinterface#run-the-webinterface)
 
