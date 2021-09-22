@@ -9,11 +9,11 @@ The 5G-MAG reference tools are a platform to
 More general information about 5G Broadcast can be found on the homepage of <a href="https://www.ors.at/en/5g-broadcast/" target="_blank">Austrian Broadcasting Services</a>.
 
 The 5G-MAG reference tools consist of five different repositories:
-* **[Receive Process](Receive-Process)** - [Repository](https://github.com/5G-MAG/rt-mbms-modem) 
-* **[Gateway Process](Gateway-Process)** - [Repository](https://github.com/5G-MAG/rt-mbms-mw)
-* **[GUI](GUI)** - [Repository](https://github.com/5G-MAG/rt-gui)
-* **[Webinterface](Webinterface)** - [Repository](https://github.com/5G-MAG/rt-wui)
-* **[Application Process](Application-Process)** 
+* [Receive Process](Receive-Process) - [Repository](https://github.com/5G-MAG/rt-mbms-modem) 
+* [Gateway Process](Gateway-Process) - [Repository](https://github.com/5G-MAG/rt-mbms-mw)
+* [GUI](GUI) - [Repository](https://github.com/5G-MAG/rt-gui)
+* [Webinterface](Webinterface) - [Repository](https://github.com/5G-MAG/rt-wui)
+* [Application Process](Application-Process)
 
 <img src="https://github.com/5G-MAG/Documentation-and-Architecture/blob/main/media/wiki/concept.png">
 
