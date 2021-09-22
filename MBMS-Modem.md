@@ -58,7 +58,7 @@ srsLTE are necessary:
 ### Further open source software
 
 A list of other used open source software components can be
-found [here](https://github.com/5G-MAG/the 5G-MAG Reference Tools-receive-process/blob/main/ATTRIBUTION_NOTICE).
+found [here](https://github.com/5G-MAG/rt-mbms-modem/blob/main/ATTRIBUTION_NOTICE).
 
 ***
 
