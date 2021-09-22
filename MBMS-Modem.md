@@ -1,73 +1,99 @@
 ## Table of content
+
 * <a href="#description">Description</a>
 * <a href="#how-it-works">How it works</a>
 * <a href="#Installation">Installation</a>
-* <a href="#run-the-receive-process">Run the *Receive Process*</a>
+* <a href="#run-the-receive-process">Run the *MBMS Modem*</a>
 * <a href="#capture-and-running-of-sample-files">Capture and running of sample files</a>
 * <a href="#measurement-recording-and-gps">Measurement recording (and GPS)</a>
 * <a href="#logfiles">Logfiles</a>
 * <a href="#configuration"> Configuration </a>
-  * <a href="#config-file">Config file</a> (general description and *Receive Process* parts)
+  * <a href="#config-file">Config file</a> (general description and *MBMS Modem* parts)
   * <a href="#restapi">RestAPI</a> (including http(s) and API key config)
 
 ## Description
-The *Receive Process* builds the lower part of OBECA. Its main task is to convert a 5G BC input signal (received as I/Q raw data from the SDR) to Multicast IP packets on the output. The *Receive Process* can run as background process or can be started/stopped manually. Configuration can be done in the config file or via RestAPI. 
+
+The *MBMS Modem* builds the lower part of the 5G-MAG Reference Tools. Its main task is to convert a 5G BC input signal (received as I/Q
+raw data from the SDR) to Multicast IP packets on the output. The *MBMS Modem* can run as background process or can
+be started/stopped manually. Configuration can be done in the config file or via RestAPI.
 
 <img src="https://github.com/5G-MAG/Documentation-and-Architecture/blob/main/media/wiki/concept-rp.png">
 
-In case you have any **questions**, need **support** during installation/running OBECA or simply want to **contribute** to the project, please contact **[reference-tools@5g-mag.com](mailto:reference-tools@5g-mag.com)**.
+In case you have any **questions**, need **support** during installation/running the 5G-MAG Reference Tools or simply want to **contribute**
+to the project, please contact **[reference-tools@5g-mag.com](mailto:reference-tools@5g-mag.com)**.
 
 ***
+
 ## How it works
-The main components of the *Receive Process* are implemented as modules for a better overview and to easier improve parts later: 
-* Reception of I/Q data from the Lime SDR Mini, for test purposes the real data can be replaced with data from a previously recorded sample file 
-* PHY: synchronization, OFDM demodulation, channel estimation, decoding of the physical control and user data channels 
-* MAC: evaluation of DCI , CFI, SIB and MIB. Decoding of MCCH and MTCH 
+
+The main components of the *MBMS Modem* are implemented as modules for a better overview and to easier improve
+parts later:
+
+* Reception of I/Q data from the Lime SDR Mini, for test purposes the real data can be replaced with data from a
+  previously recorded sample file
+* PHY: synchronization, OFDM demodulation, channel estimation, decoding of the physical control and user data channels
+* MAC: evaluation of DCI , CFI, SIB and MIB. Decoding of MCCH and MTCH
 * Read out settings from the configuration file
-* RLC / GW: Receipt of MTCH data, output on tun network interface 
-* Rest API Server: provides an HTTP server for the RESTful API 
+* RLC / GW: Receipt of MTCH data, output on tun network interface
+* Rest API Server: provides an HTTP server for the RESTful API
 * Logging of status messages via syslog
 
 <img src="https://github.com/5G-MAG/Documentation-and-Architecture/blob/main/media/wiki/modules-rp.png">
 
-### OBECA uses srsLTE as library
-The *Receive Process* is implemented as a standalone C++ application which uses some parts of the [srsLTE](https://github.com/srsLTE/srsLTE) library. In order to use FeMBMS, functional extensions and adjustments in srsLTE are necessary:
+### The 5G-MAG Reference Tools use srsLTE as library
+
+The *MBMS Modem* is implemented as a standalone C++ application which uses some parts of
+the [srsLTE](https://github.com/srsLTE/srsLTE) library. In order to use FeMBMS, functional extensions and adjustments in
+srsLTE are necessary:
+
 * phy/ch_estimation/: Implementation of channel estimation and reference signal for subcarrier spacings 1.25 and 7.5 kHz
 * phy/dft/: FFT for subcarrier spacings 1.25 and 7.5 kHz
 * phy/phch/: MIB1-MBMS extension
 * phy/phch/: support for subcarrier spacings 1.25 and 7.5 kHz
 * phy/sch/: BER-calculation added
-* phy/ue/: Dynamic selection of sample rate / number of PRB to support sample files and FeMBMS-Radioframestructure (1 + 39)
+* phy/ue/: Dynamic selection of sample rate / number of PRB to support sample files and FeMBMS-Radioframestructure (1 +
+  39)
 * asn1: Support for subcarrier_spacing_mbms_r14
 
 ### Further open source software
-A list of other used open source software components can be found [here](https://github.com/5G-MAG/obeca-receive-process/blob/main/ATTRIBUTION_NOTICE).
+
+A list of other used open source software components can be
+found [here](https://github.com/5G-MAG/the 5G-MAG Reference Tools-receive-process/blob/main/ATTRIBUTION_NOTICE).
 
 ***
 
 ## Installation
 
-Installation of OBECA consists of 4 simple steps:
+Installation of the MBMS Modem consists of 4 simple steps:
+
 1. Install dependencies
 2. Install SDR drivers
-3. Building the Receive Process
+3. Building MBMS Model process
 4. Post installation configuration
 
-Please see [the README file in the receive process repository](https://github.com/5G-MAG/obeca-receive-process#readme) for the installation guide.
+Please see [the README file in the MBMS Modem repository](https://github.com/5G-MAG/rt-mbms-modem#readme)
+for the installation guide.
 
 ***
 
-## Run the *Receive Process*
-The configuration for the *Receive Process* (center frequency, gain, ports for api, ...) can be changed in the <a href="#config-file">configuration file</a>.
-###  Multicast Routing
+## Run the *MBMS Modem*
 
-The *rp* application outputs all received packets on a tunnel (*tun*) network interface. The kernel can be configured to route multicast packets arriving on this internal interface to a network interface, so they are streamed into the local network.
+The configuration for the *MBMS Modem* (center frequency, gain, ports for api, ...) can be changed in
+the <a href="#config-file">configuration file</a>.
 
-By default, the tunnel interface is named __rp_tun__, and m'cast routing is configured to forward all packets to the default NUC ethernet interface __eno1__.
+### Multicast Routing
+
+The *rp* application outputs all received packets on a tunnel (*tun*) network interface. The kernel can be configured to
+route multicast packets arriving on this internal interface to a network interface, so they are streamed into the local
+network.
+
+By default, the tunnel interface is named __rp_tun__, and m'cast routing is configured to forward all packets to the
+default NUC ethernet interface __eno1__.
 
 This can be customized by editing the corresponding environment variables in ``/etc/default/obeca``:
+
 ````
-### The tun interface to be created for the receive process
+### The tun interface to be created for the MBMS Modem
 RP_TUN_INTERFACE="rp_tun"
 
 ### Automatically set up multicast packet routing from the tun interface to a network interface
@@ -75,12 +101,14 @@ ENABLE_MCAST_ROUTING=true
 MCAST_ROUTE_TARGET="eno1"
 ````
 
-For changes to take effect, *Receive Process* needs to be restarted: `` sudo systemctl restart rp ``
+For changes to take effect, *MBMS Modem* needs to be restarted: `` sudo systemctl restart rp ``
 
 ### Background Process
-The RP runs manually or as a background process (daemon).
-If the process terminates due to an error, it is automatically restarted. With systemd, execution, automatic start and manual restart of the process can be configured or triggered (systemctl enable / disable / start / stop / restart). 
-Starting, stopping and configuring autostart for *rp*: The standard systemd mechanisms are used to control *rp*.
+
+The RP runs manually or as a background process (daemon). If the process terminates due to an error, it is automatically
+restarted. With systemd, execution, automatic start and manual restart of the process can be configured or triggered (
+systemctl enable / disable / start / stop / restart). Starting, stopping and configuring autostart for *rp*: The
+standard systemd mechanisms are used to control *rp*.
 
 | Command| Result |
 | ------------- |-------------|
@@ -91,7 +119,12 @@ Starting, stopping and configuring autostart for *rp*: The standard systemd mech
 |  `` systemctl enable rp `` | Enable autostart, rp will be started automatically after reboot |
 
 #### Troubleshooting: Insufficient permissions when trying to open SDR
-*Receive Process* daemon will run under the user ofr (the user created in the [post installation configuration](https://github.com/5G-MAG/obeca-receive-process#step-4-post-installation-configuration)). If this user doesn't have enough permissions to open a SDR through the USB port, you might get the following error when starting *rp* in the background:
+
+*MBMS Modem* daemon will run under the user ofr (the user created in
+the [post installation configuration](https://github.com/5G-MAG/obeca-receive-process#step-4-post-installation-configuration))
+. If this user doesn't have enough permissions to open a SDR through the USB port, you might get the following error
+when starting *rp* in the background:
+
 ````
 obeca@NUC:~$ sudo systemctl status rp
 
@@ -103,8 +136,10 @@ rp[10368]: OBECA rp v1.1.0 starting up
 Process: 10240 ExecStart=/usr/bin/rp (code=dumped, signal=ABRT)
 ````
 
-To solve this issue simply change the user and group in the corresponding systemd service file (``sudo vi /lib/systemd/system/rp.service``) 
+To solve this issue simply change the user and group in the corresponding systemd service
+file (``sudo vi /lib/systemd/system/rp.service``)
 from ofr
+
 ````
 < ... >
 [Service]
@@ -113,7 +148,9 @@ User=ofr
 Group=ofr
 < ... >
 ````
+
 to **your** Ubuntu user (which is obeca in this example).
+
 ````
 < ... >
 [Service]
@@ -124,7 +161,10 @@ Group=obeca
 ````
 
 ### Manual start/stop
-If autostart is disabled, the process can be started in terminal using `rp` (ideally with superuser privileges, to allow execution at real time scheduling priority). This will start the *rp* with default log level (info). *Receive Process* can be used with the following OPTIONs:
+
+If autostart is disabled, the process can be started in terminal using `rp` (ideally with superuser privileges, to allow
+execution at real time scheduling priority). This will start the *rp* with default log level (info). *MBMS Modem*
+can be used with the following OPTIONs:
 
 | Option | | Description |
 | ------------- |---|-------------|
@@ -140,14 +180,18 @@ If autostart is disabled, the process can be started in terminal using `rp` (ide
 |  `` -V `` | `` --version `` | Print program version |
 
 ### Example screenshot
-Click [here](https://github.com/5G-MAG/Documentation-and-Architecture/blob/main/media/wiki/v1.1.0_Console_rp.PNG) for an example on what the console output should look like when running the *Receive Process* manually.
+
+Click [here](https://github.com/5G-MAG/Documentation-and-Architecture/blob/main/media/wiki/v1.1.0_Console_rp.PNG) for an
+example on what the console output should look like when running the *MBMS Modem* manually.
 
 ***
 
 <a name="samplefiles"></a>
+
 ## Capture and running of sample files
 
-Before capturing or running a sample file, make sure that *Receive Process* isn't running in background. If it is, stop *Receive Process* with ``systemctl stop rp``.
+Before capturing or running a sample file, make sure that *MBMS Modem* isn't running in background. If it is,
+stop *MBMS Modem* with ``systemctl stop rp``.
 
 ### Capture a sample file
 
@@ -157,7 +201,8 @@ Run the command ``rp -w "PathToSample/samplefile.raw"`` to capture the raw I/Q d
 
 ### Run a sample file
 
-If you like to start *Receive Process* with a downloaded sample file (see [sample files](sample-files)), you can run the following command:
+If you like to start *MBMS Modem* with a downloaded sample file (see [sample files](sample-files)), you can run the
+following command:
 
 ``rp -f "PathToSample/samplefile.raw" -b 10``
 
@@ -166,16 +211,20 @@ If you like to start *Receive Process* with a downloaded sample file (see [sampl
 ***
 
 ## Measurement recording (and GPS)
+
 ### Configuring a GPS mouse
 
-*Receive Process* relies on GPSD (https://gpsd.gitlab.io/gpsd/) for GPS data aquisition.
+*MBMS Modem* relies on GPSD (https://gpsd.gitlab.io/gpsd/) for GPS data aquisition.
 
-Please follow the setup instruction for gpsd to configure it for your GPS receiver: https://gpsd.gitlab.io/gpsd/installation.html
+Please follow the setup instruction for gpsd to configure it for your GPS
+receiver: https://gpsd.gitlab.io/gpsd/installation.html
 
 Usually, this should boil down to:
+
 - ``sudo apt install libgps-dev gpsd``
 - Checking which (virtual) serial port your GPS mouse uses, once you plug it in (e.g. ``/dev/ttyACM0``)
 - Setting this device in /etc/default/gpsd:
+
 ````
 # Devices gpsd should collect to at boot time.
 # They need to be read/writeable, either by user gpsd or the group dialout.
@@ -183,8 +232,10 @@ DEVICES="/dev/ttyACM0"
 # Other options you want to pass to gpsd
 GPSD_OPTIONS=""
 ````
+
 - Adding gpsd to the *dialout* group: `` sudo usermod -a -G dialout gpsd``
-- Checking if everything works with one of the client applications, e.g. `cgps` (can be installed with `sudo apt install gpsd-clients`). This should show position data.
+- Checking if everything works with one of the client applications, e.g. `cgps` (can be installed
+  with `sudo apt install gpsd-clients`). This should show position data.
 
 ### Logging measurement data to a CSV file
 
@@ -207,7 +258,8 @@ measurement_file:
 }
 ````
 
-You can modify the location of the created file here, set the interval in which measurement lines are written to it, and enable/disable GPS.
+You can modify the location of the created file here, set the interval in which measurement lines are written to it, and
+enable/disable GPS.
 
 #### File format
 
@@ -260,20 +312,25 @@ If there are more MCHs, they are appended at the end of the line:
 
 ## Logfiles
 
-System and *Receive Process* information are logged in the ``/var/log/syslog`` file. 
+System and *MBMS Modem* information are logged in the ``/var/log/syslog`` file.
 
-The log entries in the syslog file are based on the configured log level (see chapter <a href="#Manual-startstop">Manual start/stop</a>). If *rp* is running in background, the used log level will be 2 (info) by default. You can change the used log level by starting *rp* manually and add the parameter ``-l [logNumber]`` (further details on log level can also be found in chapter <a href="#Manual-startstop">Manual start/stop</a>).
+The log entries in the syslog file are based on the configured log level (see chapter <a href="#Manual-startstop">Manual
+start/stop</a>). If *rp* is running in background, the used log level will be 2 (info) by default. You can change the
+used log level by starting *rp* manually and add the parameter ``-l [logNumber]`` (further details on log level can also
+be found in chapter <a href="#Manual-startstop">Manual start/stop</a>).
 
-For a better overview you can open the syslog file with a filter to only see logging from *Receive Process*:
+For a better overview you can open the syslog file with a filter to only see logging from *MBMS Modem*:
 
 ``cat /var/log/syslog | grep "rp"``
 
 ***
 
 ## Configuration
+
 ### Config file
 
-The config file for *Receive Process* is located in ``/etc/obeca.conf``. The file contains configuration parameters for:
+The config file for *MBMS Modem* is located in ``/etc/obeca.conf``. The file contains configuration parameters for:
+
 * SDR
 * Physical (thread settings)
 * RestAPI (see chapter <a href="#RestAPI">RestAPI</a>)
@@ -326,27 +383,36 @@ measurement_file:
   }
 }
 ````
-### RestAPI
-RestAPI is supported to show and change configuration of the *Receive Process*. Also the [OBECA.GUI](GUI) process is accessing the API to collect display information.
 
-The API is only accessible when *Receive Process* is running. 
+### RestAPI
+
+RestAPI is supported to show and change configuration of the *MBMS Modem*. Also the [RT.GUI](GUI) process is
+accessing the API to collect display information.
+
+The API is only accessible when the *MBMS Modem* is running.
+
 #### API commands
 
-See <a href="https://austrian-broadcasting-services.github.io/obeca-receive-process/api/" target="_blank">API documentation</a> for *Receive Process*. 
+See <a href="https://5g-mag.github.io/rt-mbms-modem/api/" target="_blank">API
+documentation</a> for *MBMS Modem*.
 
-####  Securing the RESTful API interface
+#### Securing the RESTful API interface
 
-By default, the startup scripts for *rp* create a self-signed SSL certificate for the RESTful API in ``/usr/share/obeca``, so it can be accessed through https. When calling the API through a webbrowser, you may get a security warning (because of the self-signed certificate), the data stream however, is encrypted.
+By default, the startup scripts for *rp* create a self-signed SSL certificate for the RESTful API
+in ``/usr/share/obeca``, so it can be accessed through https. When calling the API through a webbrowser, you may get a
+security warning (because of the self-signed certificate), the data stream however, is encrypted.
 
 When using the self-signed certificate, you can for example access the API with the command
 
-``wget --no-check-certificate  -cq https://127.0.0.1:3010/rp-api/status -O -``.
+``wget --no-check-certificate -cq https://127.0.0.1:3010/rp-api/status -O -``.
 
 #### Changing the bound interface and port
 
-The API listens on port 3010 on all available interface (0.0.0.0) by default. To change this, modify the URL string in the config file and restart *Receive Process*.
+The API listens on port 3010 on all available interface (0.0.0.0) by default. To change this, modify the URL string in
+the config file and restart *MBMS Modem*.
 
 E.g., bind to only the loopback interface and listen on port 4455:
+
 ````
 restful_api:
 {
@@ -355,11 +421,13 @@ restful_api:
 }
 ````
 
-**Attention:** without a corresponding change in ``/usr/share/obeca/obeca-gui.py``, this will break the GUI, which also relies on the REST API.
+**Attention:** without a corresponding change in ``/usr/share/obeca/obeca-gui.py``, this will break the GUI, which also
+relies on the REST API.
 
 #### Switching to http (no SSL)
 
 To disable the SSL handshake, change the URL string in the config file to "http://" and restart rp.
+
 ````
 restful_api:
 {
@@ -370,7 +438,8 @@ restful_api:
 
 #### Using custom certificates
 
-You can use a 'real' certificate (e.g. obtained through Let's Encrypt) by adjusting the certificate and key file locations in the config file.
+You can use a 'real' certificate (e.g. obtained through Let's Encrypt) by adjusting the certificate and key file
+locations in the config file.
 
 ````
 restful_api:
@@ -396,13 +465,15 @@ restful_api:
 }
 ````
 
-When api_key.enabled is set to *true* in the configuration file, requests are only allowed if they contain a matching bearer token in their Authorization header:
+When api_key.enabled is set to *true* in the configuration file, requests are only allowed if they contain a matching
+bearer token in their Authorization header:
 
 `` Authorization: Bearer 106cd60-76c8-4c37-944c-df21aa690c1e ``
 
 You can test this by using curl (or wget) and setting the appropriate header:
 
-`` curl -X GET --header 'Authorization: Bearer 106cd60-76c8-4c37-944c-df21aa690c1e' http://<IP>:<Port>/rp-api/status `` or
+`` curl -X GET --header 'Authorization: Bearer 106cd60-76c8-4c37-944c-df21aa690c1e' http://<IP>:<Port>/rp-api/status ``
+or
 
 `` wget -q --header='Authorization: Bearer 106cd60-76c8-4c37-944c-df21aa690c1e' http://<IP>:<Port>/rp-api/status -O - ``
 
