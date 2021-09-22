@@ -1,4 +1,3 @@
-# Meeting Minutes
 
 ## Next meeting
 The next meeting will take place on October 8th 2021
