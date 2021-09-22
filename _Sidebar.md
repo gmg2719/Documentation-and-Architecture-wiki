@@ -3,7 +3,7 @@
 
 ### Projects
 * [MBMS Modem](MBMS-Modem)
-* [Gateway Process](Gateway-Process)
+* [MBMS Middleware](MBMS-Middleware)
 * [Application Process](Application-Process)
 * [GUI](GUI)
 * [Webinterface](Webinterface)
