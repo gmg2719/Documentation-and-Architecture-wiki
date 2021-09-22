@@ -2,7 +2,7 @@
 * [Home & Quickstart](Home)
 
 ### Projects
-* [Receive Process](Receive-Process)
+* [MBMS Modem](MBMS-Modem)
 * [Gateway Process](Gateway-Process)
 * [Application Process](Application-Process)
 * [GUI](GUI)
