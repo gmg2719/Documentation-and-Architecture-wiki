@@ -3,7 +3,7 @@
 * <a href="#description">Description</a>
 * <a href="#how-it-works">How it works</a>
 * <a href="#Installation">Installation</a>
-* <a href="#run-the-receive-process">Run the *MBMS Modem*</a>
+* <a href="#run-the-mbms-modem">Run the MBMS Modem</a>
 * <a href="#capture-and-running-of-sample-files">Capture and running of sample files</a>
 * <a href="#measurement-recording-and-gps">Measurement recording (and GPS)</a>
 * <a href="#logfiles">Logfiles</a>
