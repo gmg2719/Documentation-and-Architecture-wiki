@@ -16,10 +16,10 @@ If you want to be sure that everything is working, we recommend to use our refer
 
 ## Supported SDR
 
-To use OBECA in a live setup a SDR (software defined radio) is required.
+To use the 5G-MAG Reference Tools in a live setup a SDR (software defined radio) is required.
 
-OBECA *[Receive Process](Receive-Process)* supports [SoapyAPI](https://github.com/pothosware/SoapySDR/wiki), thus any
-supported SDR should work with OBECA (please keep in mind that not every SDR hardware is sufficient for receiving an 5G
+5G-MAG Reference Tools *[MBMS Modem](MBMS-Modem)* supports [SoapyAPI](https://github.com/pothosware/SoapySDR/wiki), thus any
+supported SDR should work with the 5G-MAG Reference Tools (please keep in mind that not every SDR hardware is sufficient for receiving an 5G
 Broadcast signal (e.g. bandwidth, sample rate...)).
 
 We recommend using a [LimeSDR Mini](https://limemicro.com/products/boards/limesdr-mini/)
@@ -42,7 +42,7 @@ other OS should work (e.g., Ubuntu 18, Debian, Raspbian...)
 
 ## Reference setups
 
-### OBECA/ORS system
+### 5G-MAG Reference Tools system
 
 #### Specs
 
@@ -62,11 +62,11 @@ The full specification of the Intel NUC can be
 found [here](https://ark.intel.com/content/www/us/en/ark/products/199110/intel-nuc-8-pro-kit-nuc8v7pnh.html).
 
 If you want to fully integrate the SDR into the NUC as seen on the picture
-above: [OBECA ORS casing](https://github.com/johannmika/obeca-ors-casing)
+above: [5G-MAG Reference Tools casing](https://github.com/johannmika/obeca-ors-casing)
 
 #### Testcases
 
-OBECA/ORS system was tested live, with sample files, with bandwidths 3, 5, 6, 7, 8 and 10 MHz, SCS 1.25 and 7.5 kHz and
+The 5G-MAG Reference Tools system was tested live, with sample files, with bandwidths 3, 5, 6, 7, 8 and 10 MHz, SCS 1.25 and 7.5 kHz and
 modulation coding schemes (MCS) 1-26 with multiple services (RTP, HLS). Max CPU (2 services, 10 MHz, MCS26) was below
 60%.
 
