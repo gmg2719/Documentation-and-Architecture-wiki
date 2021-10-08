@@ -112,11 +112,11 @@ standard systemd mechanisms are used to control *rp*.
 
 | Command| Result |
 | ------------- |-------------|
-|  `` systemctl start rp `` | Manually start the process |
-|  `` systemctl stop rp `` | Manually stop the process |
-|  `` systemctl status rp `` | Show process status |
-|  `` systemctl disable rp `` | Disable autostart, rp will not be started after reboot |
-|  `` systemctl enable rp `` | Enable autostart, rp will be started automatically after reboot |
+|  `` systemctl start 5gmag-rt-modem `` | Manually start the process |
+|  `` systemctl stop 5gmag-rt-modem `` | Manually stop the process |
+|  `` systemctl status 5gmag-rt-modem `` | Show process status |
+|  `` systemctl disable 5gmag-rt-modem `` | Disable autostart, rp will not be started after reboot |
+|  `` systemctl enable 5gmag-rt-modem `` | Enable autostart, rp will be started automatically after reboot |
 
 #### Troubleshooting: Insufficient permissions when trying to open SDR
 
