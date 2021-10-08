@@ -90,7 +90,7 @@ network.
 By default, the tunnel interface is named __rp_tun__, and m'cast routing is configured to forward all packets to the
 default NUC ethernet interface __eno1__.
 
-This can be customized by editing the corresponding environment variables in ``/etc/default/obeca``:
+This can be customized by editing the corresponding environment variables in ``/etc/5gmag-rt.conf``:
 
 ````
 ### The tun interface to be created for the MBMS Modem
@@ -120,8 +120,8 @@ standard systemd mechanisms are used to control *rp*.
 
 #### Troubleshooting: Insufficient permissions when trying to open SDR
 
-*MBMS Modem* daemon will run under the user ofr (the user created in
-the [post installation configuration](https://github.com/5G-MAG/obeca-receive-process#step-4-post-installation-configuration))
+*MBMS Modem* daemon will run under the user fivegmag-rt (the user created in
+the [post installation configuration](https://github.com/5G-MAG/rt-mbms-modem#step-4-post-installation-configuration))
 . If this user doesn't have enough permissions to open a SDR through the USB port, you might get the following error
 when starting *rp* in the background:
 
@@ -144,19 +144,19 @@ from ofr
 < ... >
 [Service]
 < ... >
-User=ofr
-Group=ofr
+User=fivegmag-rt
+Group=fivegmag-rt
 < ... >
 ````
 
-to **your** Ubuntu user (which is obeca in this example).
+to **your** Ubuntu user (which is fivegmag-rt in this example).
 
 ````
 < ... >
 [Service]
 < ... >
-User=obeca
-Group=obeca
+User=fivegmag-rt
+Group=fivegmag-rt
 < ... >
 ````
 
@@ -169,7 +169,7 @@ can be used with the following OPTIONs:
 | Option | | Description |
 | ------------- |---|-------------|
 |  `` -b `` | `` --file-bandwidth=BANDWIDTH `` | If decoding data from a sample file, specify the channel bandwidth of the recorded data in MHz here (e.g. 5) |
-|  `` -c `` | `` --config=FILE `` | Configuration file (default: /etc/obeca.conf) |
+|  `` -c `` | `` --config=FILE `` | Configuration file (default: /etc/5gmag-rt.conf) |
 |  `` -d `` | `` --sdr_devices `` | Prints a list of all available SDR devices |
 |  `` -f `` | `` --sample-file=FILE `` | Sample file in 4 byte float interleaved format to read I/Q data from. <br />If present, the data from this file will be decoded instead of live SDR data.<br /> The channel bandwidth must be specified with the --file-bandwidth flag, and<br /> the sample rate of the file must be suitable for this bandwidth. |
 |  ``  -l `` | `` --log-level=LEVEL  `` | Log verbosity: 0 = trace, 1 = debug, 2 = info, 3 = warn, 4 = error, 5 = critical, 6 = none. Default: 2. |
@@ -241,7 +241,7 @@ GPSD_OPTIONS=""
 
 #### Configuration for measurement file
 
-Is in ``/etc/obeca.conf``:
+Is in ``/etc/5gmag-rt.conf``:
 
 ```` 
 measurement_file:
@@ -329,7 +329,7 @@ For a better overview you can open the syslog file with a filter to only see log
 
 ### Config file
 
-The config file for *MBMS Modem* is located in ``/etc/obeca.conf``. The file contains configuration parameters for:
+The config file for *MBMS Modem* is located in ``/etc/5gmag-rt.conf``. The file contains configuration parameters for:
 
 * SDR
 * Physical (thread settings)
@@ -337,49 +337,47 @@ The config file for *MBMS Modem* is located in ``/etc/obeca.conf``. The file con
 * Measurment file (see chapter <a href="#Measurement-recording-and-GPS">Measurement recording (and GPS)</a>)
 
 ````
-sdr:
-{
-  center_frequency_hz = 667000000;
-  filter_bandwidth_hz =  10000000;
-  search_sample_rate =    7680000;
+modem: {
+  sdr: {
+    center_frequency_hz = 943200000L;
+    filter_bandwidth_hz =   5000000;
+    search_sample_rate =    7680000;
 
-  normalized_gain = 40.0; # Antenna gain in dB, range depends on used SDR
-  antenna = "RX";
-  device_args = "driver=bladerf";
+    normalized_gain = 40.0;
+    device_args = "driver=lime";
+    antenna = "LNAW";
 
-  ringbuffer_size_ms = 200;
-  reader_thread_priority_rt = 50; # I/Q data reception from the SDR runs in a separate thread, which should have highest priority 
-}
-
-phy:
-{
-  threads = 4;
-  thread_priority_rt = 10;  # priority of the frame processing threads
-  main_thread_priority_rt = 20;  # priority of the main run loop
-}
-
-restful_api:
-{
-  uri: "https://0.0.0.0:3010/rp-api/";
-  cert: "/usr/share/obeca/cert.pem";
-  key: "/usr/share/obeca/key.pem";
-  api_key:
-  {
-    enabled: false;
-    key: "106cd60-76c8-4c37-944c-df21aa690c1e";
+    ringbuffer_size_ms = 200;
+    reader_thread_priority_rt = 50;
   }
-}
 
-measurement_file:
-{
-  enabled: true;
-  file_path: "/tmp/rp_measurements.csv";
-  interval_secs: 5;
-  gpsd:
-  {
+  phy: {
+    threads = 4;
+    thread_priority_rt = 10;
+    main_thread_priority_rt = 20;
+  }
+
+  restful_api: {
+    uri: "http://0.0.0.0:3010/modem-api/";
+    cert: "/usr/share/5gmag-rt/cert.pem";
+    key: "/usr/share/5gmag-rt/key.pem";
+    api_key:
+    {
+      enabled: false;
+      key: "106cd60-76c8-4c37-944c-df21aa690c1e";
+    }
+  }
+
+  measurement_file: {
     enabled: true;
-    host: "localhost";
-    port: "2947";
+    file_path: "/tmp/modem_measurements.csv";
+    interval_secs: 10;      
+    gpsd:
+    {
+      enabled: true;
+      host: "localhost";
+      port: "2947";
+    }
   }
 }
 ````
@@ -398,8 +396,8 @@ documentation</a> for *MBMS Modem*.
 
 #### Securing the RESTful API interface
 
-By default, the startup scripts for *rp* create a self-signed SSL certificate for the RESTful API
-in ``/usr/share/obeca``, so it can be accessed through https. When calling the API through a webbrowser, you may get a
+By default, the startup scripts for *5gmag-rt-modem* create a self-signed SSL certificate for the RESTful API
+in ``/usr/share/5gmag-rt``, so it can be accessed through https. When calling the API through a webbrowser, you may get a
 security warning (because of the self-signed certificate), the data stream however, is encrypted.
 
 When using the self-signed certificate, you can for example access the API with the command
@@ -420,9 +418,6 @@ restful_api:
  <....>
 }
 ````
-
-**Attention:** without a corresponding change in ``/usr/share/obeca/obeca-gui.py``, this will break the GUI, which also
-relies on the REST API.
 
 #### Switching to http (no SSL)
 
@@ -445,8 +440,8 @@ locations in the config file.
 restful_api:
 {
   <...>
-  cert: "/usr/share/obeca/cert.pem";
-  key: "/usr/share/obeca/key.pem";
+  cert: "/usr/share/5gmag-rt/cert.pem";
+  key: "/usr/share/5gmag-rt/key.pem";
   <...>
 }
 ````
