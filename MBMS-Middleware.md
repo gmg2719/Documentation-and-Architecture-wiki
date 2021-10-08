@@ -33,15 +33,15 @@ When starting, the *MBMS Middleware* listens to the local [tun interface](https:
 ### Background process
 The *MBMS Middleware* runs manually or as a background process (daemon).
 If the process terminates due to an error, it is automatically restarted. With systemd, execution, automatic start and manual restart of the process can be configured or triggered (systemctl enable / disable / start / stop / restart).
-Starting, stopping and configuring autostart for *mw*: The standard systemd mechanisms are used to control *mw*:
+Starting, stopping and configuring autostart for *5gmag-rt-mw*: The standard systemd mechanisms are used to control *5gmag-rt-mw*:
 
 | Command| Result |
 | ------------- |-------------|
-|  `` systemctl start mw `` | Manually start the process in background |
-|  `` systemctl stop mw `` | Manually stop the background process |
-|  `` systemctl status mw `` | Show process status |
-|  `` systemctl disable mw `` | Disable autostart, mw will not be started after reboot |
-|  `` systemctl enable mw `` | Enable autostart, mw will be started automatically after reboot |
+|  `` systemctl start 5gmag-rt-mw `` | Manually start the process in background |
+|  `` systemctl stop 5gmag-rt-mw `` | Manually stop the background process |
+|  `` systemctl status 5gmag-rt-mw `` | Show process status |
+|  `` systemctl disable 5gmag-rt-mw `` | Disable autostart, 5gmag-rt-mw will not be started after reboot |
+|  `` systemctl enable 5gmag-rt-mw `` | Enable autostart, 5gmag-rt-mw will be started automatically after reboot |
 
 ### Manual start/stop
 After [installing](https://github.com/5G-MAG/rt-mbms-mw#readme) the *MBMS Middleware* you can start the process manually in the terminal using the command ``mw``. This will start the *mw* with default log level (info). *MBMS Middleware* can be used with the following OPTIONs:
