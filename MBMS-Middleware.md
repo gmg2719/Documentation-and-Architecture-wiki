@@ -33,22 +33,22 @@ When starting, the *MBMS Middleware* listens to the local [tun interface](https:
 ### Background process
 The *MBMS Middleware* runs manually or as a background process (daemon).
 If the process terminates due to an error, it is automatically restarted. With systemd, execution, automatic start and manual restart of the process can be configured or triggered (systemctl enable / disable / start / stop / restart).
-Starting, stopping and configuring autostart for *gw*: The standard systemd mechanisms are used to control *gw*:
+Starting, stopping and configuring autostart for *mw*: The standard systemd mechanisms are used to control *mw*:
 
 | Command| Result |
 | ------------- |-------------|
-|  `` systemctl start gw `` | Manually start the process in background |
-|  `` systemctl stop gw `` | Manually stop the background process |
-|  `` systemctl status gw `` | Show process status |
-|  `` systemctl disable gw `` | Disable autostart, gw will not be started after reboot |
-|  `` systemctl enable gw `` | Enable autostart, gw will be started automatically after reboot |
+|  `` systemctl start mw `` | Manually start the process in background |
+|  `` systemctl stop mw `` | Manually stop the background process |
+|  `` systemctl status mw `` | Show process status |
+|  `` systemctl disable mw `` | Disable autostart, mw will not be started after reboot |
+|  `` systemctl enable mw `` | Enable autostart, mw will be started automatically after reboot |
 
 ### Manual start/stop
-After [installing](https://github.com/5G-MAG/rt-mbms-mw#readme) the *MBMS Middleware* you can start the process manually in the terminal using the command ``gw``. This will start the *gw* with default log level (info). *MBMS Middleware* can be used with the following OPTIONs:
+After [installing](https://github.com/5G-MAG/rt-mbms-mw#readme) the *MBMS Middleware* you can start the process manually in the terminal using the command ``mw``. This will start the *mw* with default log level (info). *MBMS Middleware* can be used with the following OPTIONs:
 
 | Option | | Description |
 | ------------- |---|-------------|
-|  `` -c `` | `` --config=FILE `` | Configuration file (default: /etc/obeca.conf) |
+|  `` -c `` | `` --config=FILE `` | Configuration file (default: /etc/5gmag-rt.conf)) |
 |  `` -i `` | `` --interface=IF `` | IP address of the interface to bind flute receivers to (default: 192.168.180.10) |
 |  `` -l `` | `` --log-level=LEVEL  `` | Log verbosity: 0 = trace, 1 = debug, 2 = info, 3 = warn, 4 = error, 5 = critical, 6 = none. Default: 2. |
 |  `` -? `` | `` --help `` | Give this help list |
@@ -57,23 +57,22 @@ After [installing](https://github.com/5G-MAG/rt-mbms-mw#readme) the *MBMS Middle
 ## Configuration
 ### Config file
 
-The config file for *MBMS Middleware* is located in ``/etc/obeca.conf``. The file contains configuration parameters for:
+The config file for *MBMS Middleware* is located in ``/etc/5gmag-rt.conf)``. The file contains configuration parameters for:
 * Cache
 * HTTP-Server
 
 ````
-gw:
+mw: 
 {
-  cache: {
-    base_path: "/tmp/obeca"; # Path where files shall be cached
-    max_file_age: 25;    /* seconds */
+  cache: { 
+    max_file_age: 30;    /* seconds */
     max_total_size: 512; /* megabyte */
   }
   http_server: {
     uri: "http://0.0.0.0:3020/";
-    api_path: "gw-api";
-    cert: "/usr/share/obeca/cert.pem";
-    key: "/usr/share/obeca/key.pem";
+    api_path: "mw-api";
+    cert: "/usr/share/5gmag-rt/cert.pem";
+    key: "/usr/share/5gmag-rt/key.pem";
     api_key:
     {
       enabled: false;
@@ -83,33 +82,3 @@ gw:
 }
 
 ````
-
-
-
-The config file for *MBMS Middleware* is located in ``/etc/obeca.conf``. The file contains configuration parameters for:
-* Cache
-* HTTP-Server
-
-````
-gw:
-{
-  cache: {
-    base_path: "/tmp/obeca"; # Path where files shall be cached
-    max_file_age: 25;    /* seconds */
-    max_total_size: 512; /* megabyte */
-  }
-  http_server: {
-    uri: "http://0.0.0.0:3020/";
-    api_path: "gw-api";
-    cert: "/usr/share/obeca/cert.pem";
-    key: "/usr/share/obeca/key.pem";
-    api_key:
-    {
-      enabled: false;
-      key: "106cd60-76c8-4c37-944c-df21aa690c1e";
-    }
-  }
-}
-
-````
-
