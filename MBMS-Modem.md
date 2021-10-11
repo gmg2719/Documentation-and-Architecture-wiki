@@ -101,6 +101,8 @@ ENABLE_MCAST_ROUTING=true
 MCAST_ROUTE_TARGET="eno1"
 ````
 
+In order to find the right network interface use `ifconfig`. It might look similar to this: `enp0s31f6: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>` with `enp0s31f6` being the correct string in this case.
+
 For changes to take effect, *MBMS Modem* needs to be restarted: `` sudo systemctl restart 5gmag-rt-modem ``
 
 ### Background Process
