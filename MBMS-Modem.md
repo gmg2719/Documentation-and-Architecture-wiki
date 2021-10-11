@@ -83,7 +83,7 @@ the <a href="#config-file">configuration file</a>.
 
 ### Multicast Routing
 
-The *rp* application outputs all received packets on a tunnel (*tun*) network interface. The kernel can be configured to
+The *modem* application outputs all received packets on a tunnel (*tun*) network interface. The kernel can be configured to
 route multicast packets arriving on this internal interface to a network interface, so they are streamed into the local
 network.
 
@@ -101,43 +101,43 @@ ENABLE_MCAST_ROUTING=true
 MCAST_ROUTE_TARGET="eno1"
 ````
 
-For changes to take effect, *MBMS Modem* needs to be restarted: `` sudo systemctl restart rp ``
+For changes to take effect, *MBMS Modem* needs to be restarted: `` sudo systemctl restart 5gmag-rt-modem ``
 
 ### Background Process
 
-The RP runs manually or as a background process (daemon). If the process terminates due to an error, it is automatically
+The modem runs manually or as a background process (daemon). If the process terminates due to an error, it is automatically
 restarted. With systemd, execution, automatic start and manual restart of the process can be configured or triggered (
-systemctl enable / disable / start / stop / restart). Starting, stopping and configuring autostart for *rp*: The
-standard systemd mechanisms are used to control *rp*.
+systemctl enable / disable / start / stop / restart). Starting, stopping and configuring autostart for *modem*: The
+standard systemd mechanisms are used to control *modem*.
 
 | Command| Result |
 | ------------- |-------------|
 |  `` systemctl start 5gmag-rt-modem `` | Manually start the process |
 |  `` systemctl stop 5gmag-rt-modem `` | Manually stop the process |
 |  `` systemctl status 5gmag-rt-modem `` | Show process status |
-|  `` systemctl disable 5gmag-rt-modem `` | Disable autostart, rp will not be started after reboot |
-|  `` systemctl enable 5gmag-rt-modem `` | Enable autostart, rp will be started automatically after reboot |
+|  `` systemctl disable 5gmag-rt-modem `` | Disable autostart, modem will not be started after reboot |
+|  `` systemctl enable 5gmag-rt-modem `` | Enable autostart, modem will be started automatically after reboot |
 
 #### Troubleshooting: Insufficient permissions when trying to open SDR
 
 *MBMS Modem* daemon will run under the user fivegmag-rt (the user created in
 the [post installation configuration](https://github.com/5G-MAG/rt-mbms-modem#step-4-post-installation-configuration))
 . If this user doesn't have enough permissions to open a SDR through the USB port, you might get the following error
-when starting *rp* in the background:
+when starting *modem* in the background:
 
 ````
-obeca@NUC:~$ sudo systemctl status rp
+obeca@NUC:~$ sudo systemctl status 5g-mag-rt-modem
 
-rp[10368]: OBECA rp v1.1.0 starting up
+rp[10368]:  5g-mag-rt modem v1.1.0 starting up
 < ... >
 [WARNING @ host/libraries/libbladeRF/src/backend/usb/libusb.c:529] Found a bladeRF via VID/PID, but could not open it due to insufficient permissions.
 [ERROR] bladerf_open_with_devinfo() returned -7 - No device(s) available
 < ... >
-Process: 10240 ExecStart=/usr/bin/rp (code=dumped, signal=ABRT)
+Process: 10240 ExecStart=/usr/bin/modem (code=dumped, signal=ABRT)
 ````
 
 To solve this issue simply change the user and group in the corresponding systemd service
-file (``sudo vi /lib/systemd/system/rp.service``)
+file (``sudo vi /lib/systemd/system/modem.service``)
 from ofr
 
 ````
@@ -162,8 +162,8 @@ Group=fivegmag-rt
 
 ### Manual start/stop
 
-If autostart is disabled, the process can be started in terminal using `rp` (ideally with superuser privileges, to allow
-execution at real time scheduling priority). This will start the *rp* with default log level (info). *MBMS Modem*
+If autostart is disabled, the process can be started in terminal using `modem` (ideally with superuser privileges, to allow
+execution at real time scheduling priority). This will start the *modem* with default log level (info). *MBMS Modem*
 can be used with the following OPTIONs:
 
 | Option | | Description |
@@ -191,20 +191,20 @@ example on what the console output should look like when running the *MBMS Modem
 ## Capture and running of sample files
 
 Before capturing or running a sample file, make sure that *MBMS Modem* isn't running in background. If it is,
-stop *MBMS Modem* with ``systemctl stop rp``.
+stop *MBMS Modem* with ``systemctl stop 5g-mag-rt-modem``.
 
 ### Capture a sample file
 
 In order to capture sample files, you need to have a reception of a 5G BC signal.
 
-Run the command ``rp -w "PathToSample/samplefile.raw"`` to capture the raw I/Q data from the SDR.
+Run the command ``modem -w "PathToSample/samplefile.raw"`` to capture the raw I/Q data from the SDR.
 
 ### Run a sample file
 
 If you like to start *MBMS Modem* with a downloaded sample file (see [sample files](sample-files)), you can run the
 following command:
 
-``rp -f "PathToSample/samplefile.raw" -b 10``
+``modem -f "PathToSample/samplefile.raw" -b 10``
 
 > **Notice:** ``-b 10`` represents the used bandwith when the sample file was captured (see <a href="#Manual-startstop">Manual start/stop</a>). So for a 5 MHz bandwidth sample file you need to adjust the command to ``-b 5``
 
@@ -244,17 +244,16 @@ GPSD_OPTIONS=""
 Is in ``/etc/5gmag-rt.conf``:
 
 ```` 
-measurement_file:
-{
-  enabled: true; # if false, measurments are not captured in file
-  file_path: "/tmp/rp_measurements.csv";
-  interval_secs: 5;
-  gpsd:
-  {
-    enabled: true; # if false, logging without GPS timestamp, latitude and longitude
-    host: "localhost";
-    port: "2947";
-  }
+  measurement_file: {
+    enabled: true;
+    file_path: "/tmp/modem_measurements.csv";
+    interval_secs: 10;      
+    gpsd:
+    {
+      enabled: true;
+      host: "localhost";
+      port: "2947";
+    }
 }
 ````
 
@@ -315,13 +314,13 @@ If there are more MCHs, they are appended at the end of the line:
 System and *MBMS Modem* information are logged in the ``/var/log/syslog`` file.
 
 The log entries in the syslog file are based on the configured log level (see chapter <a href="#Manual-startstop">Manual
-start/stop</a>). If *rp* is running in background, the used log level will be 2 (info) by default. You can change the
-used log level by starting *rp* manually and add the parameter ``-l [logNumber]`` (further details on log level can also
+start/stop</a>). If *modem* is running in background, the used log level will be 2 (info) by default. You can change the
+used log level by starting *modem* manually and add the parameter ``-l [logNumber]`` (further details on log level can also
 be found in chapter <a href="#Manual-startstop">Manual start/stop</a>).
 
 For a better overview you can open the syslog file with a filter to only see logging from *MBMS Modem*:
 
-``cat /var/log/syslog | grep "rp"``
+``cat /var/log/syslog | grep "modem"``
 
 ***
 
@@ -402,7 +401,7 @@ security warning (because of the self-signed certificate), the data stream howev
 
 When using the self-signed certificate, you can for example access the API with the command
 
-``wget --no-check-certificate -cq https://127.0.0.1:3010/rp-api/status -O -``.
+``wget --no-check-certificate -cq https://127.0.0.1:3010/modem-api/status -O -``.
 
 #### Changing the bound interface and port
 
@@ -414,19 +413,19 @@ E.g., bind to only the loopback interface and listen on port 4455:
 ````
 restful_api:
 {
-  uri: "http://127.0.0.1:4455/rp-api/";
+  uri: "http://127.0.0.1:4455/modem-api/";
  <....>
 }
 ````
 
 #### Switching to http (no SSL)
 
-To disable the SSL handshake, change the URL string in the config file to "http://" and restart rp.
+To disable the SSL handshake, change the URL string in the config file to "http://" and restart modem.
 
 ````
 restful_api:
 {
-  uri: "http://0.0.0.0:3010/rp-api/";
+  uri: "http://0.0.0.0:3010/modem-api/";
  <....>
 }
 ````
@@ -467,8 +466,8 @@ bearer token in their Authorization header:
 
 You can test this by using curl (or wget) and setting the appropriate header:
 
-`` curl -X GET --header 'Authorization: Bearer 106cd60-76c8-4c37-944c-df21aa690c1e' http://<IP>:<Port>/rp-api/status ``
+`` curl -X GET --header 'Authorization: Bearer 106cd60-76c8-4c37-944c-df21aa690c1e' http://<IP>:<Port>/modem-api/status ``
 or
 
-`` wget -q --header='Authorization: Bearer 106cd60-76c8-4c37-944c-df21aa690c1e' http://<IP>:<Port>/rp-api/status -O - ``
+`` wget -q --header='Authorization: Bearer 106cd60-76c8-4c37-944c-df21aa690c1e' http://<IP>:<Port>/modem-api/status -O - ``
 
