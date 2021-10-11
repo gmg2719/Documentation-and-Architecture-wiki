@@ -16,7 +16,7 @@ The **MBMS Middleware** presents the heart of the 5G-MAG Reference Tools. Its ma
 * In the current release 0.9.x the *MBMS Middleware* uses the UDP multicast IP packets from the *MBMS Model*.
 * If the payload contains FLUTE decoded content (files, i.e. Service Announcement, DASH, HLS) the *MBMS Middleware* decodes the packets with its FLUTE/ALC decoder into files.
 * The *MBMS Middleware* includes a web-cache server and each service is available like an CDN publishing point including manifest and segment files.
-* Information how to access the endpoints (e.g. URL to manifest.m3u8 or manifest.mpd) can be found on the corresponding Gateway tab in the *GUI* or *Webinterface*.
+* Information how to access the endpoints (e.g. URL to manifest.m3u8 or manifest.mpd) can be found on the corresponding Middleware tab in the *GUI* or *Webinterface*.
 > **Note:** The FLUTE/ALC decoder is available as an independent repository (library) [here](https://github.com/5G-MAG/libflute) and includes encoding/decoding functionalities.
 
 ## Installation
@@ -28,7 +28,7 @@ Please see [the README file in the MBMS Middleware repository](https://github.co
 
 ## Run the MBMS Middleware
 The configuration for the *MBMS Middleware* (file paths, max file age, api ports, ...) can be changed in the <a href="#config-file">configuration file</a>.
-When starting, the *MBMS Middleware* listens to the local [tun interface](https://github.com/5G-MAG/Documentation-and-Architecture/wiki/Receive-Process#multicast-routing). Received multicast packets from the *Receive Process* are FLUTE decoded and the files are stored in the cache.
+When starting, the *MBMS Middleware* listens to the local [tun interface](https://github.com/5G-MAG/Documentation-and-Architecture/wiki/MBMS-Modem#multicast-routing). Received multicast packets from the *Receive Process* are FLUTE decoded and the files are stored in the cache.
 
 ### Background process
 The *MBMS Middleware* runs manually or as a background process (daemon).
