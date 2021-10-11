@@ -9,7 +9,7 @@ https://us06web.zoom.us/j/81143890686?pwd=VzRxTkpxMHlWRVJrYXUxblV6c1BlQT09
 ## Minutes 08.10.2021
 
 ### Participants
-tbd
+Jordi J. Gimenez (5G-MAG) (5G Media Action Group), Alvaro (UPV), Daniel Silhavy, David Fernández Piñas, Ben Smith (EDT), UMESH TALLAM, Stefan Babel, Martin Holovlasky (KRONEHIT), Klaus Kuehnhammer, Christoph Tanzer (ORS) (Christoph Tanzer), Romain Bouqueau, Gerjo Bruntink (NPO), Louay Bassbouss (Fraunhofer FOKUS), [Eurofins] Ian Medland, Kurt Krauss (Dolby), Tünde Kaufman, Pierre Brétillon, Richard Bradbury (BBC), Thomas Stockhammer, Christophe Burdinat (ATEME), Gwendal Simon (Synamedia) (Gwendal Simon), cthienot, Federico Maria Pandolfi (Rai)
 
 ### Material
 * Latest changes, architecture updates: https://member.5g-mag.com/wg/TF-RT/document/559 
