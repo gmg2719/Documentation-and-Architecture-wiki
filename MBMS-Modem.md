@@ -90,7 +90,7 @@ network.
 By default, the tunnel interface is named **mbms_modem_tun**, and m'cast routing is configured to forward all packets to the
 default NUC ethernet interface **eno1**.
 
-This can be customized by editing the corresponding environment variables in ``/etc/5gmag-rt.conf``:
+This can be customized by editing the corresponding environment variables in ``/etc/default/5gmag-rt``:
 
 ````
 ### The tun interface to be created for the MBMS Modem
