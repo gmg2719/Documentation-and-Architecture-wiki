@@ -6,6 +6,88 @@ The next meeting will take place on October 8th 2021
 Join Zoom Meeting
 https://us06web.zoom.us/j/81143890686?pwd=VzRxTkpxMHlWRVJrYXUxblV6c1BlQT09
 
+## Minutes 08.10.2021
+
+### Participants
+tbd
+
+### Material
+* Latest changes, architecture updates: https://member.5g-mag.com/wg/TF-RT/document/559 
+* Code flow diagram: https://member.5g-mag.com/wg/TF-RT/document/560
+
+### Notes - Code overview
+* Overall: From antenna to Big Buck Bunny
+* SDR hardware, tested with BladeRF and LimeSDR
+* If additional SDR cards are required a driver for SoapySDR is required
+* MBMS Modem
+  * SDR Reader
+    * tune frequency 
+    * take samples from the file and puts them in the ring buffer
+  * Moving to srslte 
+    * Request samples from srsUI
+    * Does everything necessary in the time domain to get a synchronized frame from the hardware
+    * Standard srsLTE impmentation did not know about MBMS cells
+  * CAS / MBSFN Frame processor
+    * Running in threads in parallel
+    * Lots of changes to corresponding srslte functions
+      * OFDM
+      * CHEST
+    * Channel Decoders
+      * Return actual data 
+    * RRC
+      * Most of the things the RRC is doing is ignored
+      * Activates Bearers in the RLC
+    * ASN
+      * Code generated automatically, tool not available
+    * GW
+      * Stick IP packets to the tunnel interface
+* MBMS Middleware
+  * Libflute as a submodule
+  * Flute Receiver
+    * Constructs ALC packet of the data
+  * Creates an Encoding Symbol and gets that back
+  * Sticks the encoding symbol to file
+  * RESTful API
+    * Returns files to the video player
+  *  Middleware
+    * Main control bit
+    * Calls the model REST API
+    * Check if FLUTE channel contains a Service Announcement that starts receiving the FLUTE session
+
+### Discussion items / Questions
+* Q: Do we branch changes to srsLTE back to the main branch
+  * No, they did a rename in the meantime to srsRAN, but would be nice to have. Apply our changes on top of the srsRAN
+* Q: Decode more than one FLUTE channel?
+  * Yes, limited by CPU but no particular limitation
+* Q: Why write own FLUTE library
+  * Started using existing one. Main problem was the licensing, should be compatible with existing 5G-MAG licenses
+  * All libraries went through file system, wanted to have all in memory with less copying as possible
+  * Memory buffer in FILE object. Nothing is copied ever
+  * Own library benefitial also for CMAF chunked low latency streaming
+* Q: Is FLUTE library implementing old FLUTE version
+  * Klaus: No large differences between version 1 and 2
+  * MBMS spec reference old specs of FLUTE and ALC
+* Q: No content encoding and forward correction FLUTE library
+  * Yes, potential work item for the future
+* Q: If libflute would receive FEC packets would it throw an exception
+  * Yes, potential contribution
+* Q: All changes on srsLTE documented?
+  * Yes
+* Q: Can we use srsRAN from the transmitter side against our version of srsLTE
+  * Not sure, might work. 
+  * Jordi, Klaus: To add information here
+* Q: Are the BaseURLs prioritized?
+  * No not yet, something in the DVB spec
+* Q: Would make sense to add a document what could be done on application and what on player level
+  * Separate between player and application code
+* Q: Might it be useful to ServiceWorker 
+  * Yes might be useful but needs to be aware of FLUTE decoded files
+* Q: Can we setup an end-to-end workflow
+  * Research and documentation what is needed first and what can be reused in terms of open source software
+* Q: Is SAND DASH specific
+  * No, SAND messages can be used for DASH and HLS.
+
+
 ## Minutes 17.09.2021
 
 ### Participants
