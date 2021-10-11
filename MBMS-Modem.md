@@ -87,14 +87,14 @@ The *modem* application outputs all received packets on a tunnel (*tun*) network
 route multicast packets arriving on this internal interface to a network interface, so they are streamed into the local
 network.
 
-By default, the tunnel interface is named __rp_tun__, and m'cast routing is configured to forward all packets to the
-default NUC ethernet interface __eno1__.
+By default, the tunnel interface is named **mbms_modem_tun**, and m'cast routing is configured to forward all packets to the
+default NUC ethernet interface **eno1**.
 
 This can be customized by editing the corresponding environment variables in ``/etc/5gmag-rt.conf``:
 
 ````
 ### The tun interface to be created for the MBMS Modem
-RP_TUN_INTERFACE="rp_tun"
+MODEM_TUN_INTERFACE="mbms_modem_tun"
 
 ### Automatically set up multicast packet routing from the tun interface to a network interface
 ENABLE_MCAST_ROUTING=true
