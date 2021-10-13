@@ -11,7 +11,6 @@ More general information about 5G Broadcast can be found on the homepage of <a h
 The 5G-MAG reference tools consist of five different repositories:
 * [MBMS Modem](mbms-modem) - [Repository](https://github.com/5G-MAG/rt-mbms-modem) 
 * [MBMS Middleware](mbms-middleware) - [Repository](https://github.com/5G-MAG/rt-mbms-mw)
-* [GUI](GUI) - [Repository](https://github.com/5G-MAG/rt-gui)
 * [Webinterface](Webinterface) - [Repository](https://github.com/5G-MAG/rt-wui)
 * [Application Process](Application-Process)
 
@@ -26,7 +25,6 @@ In case you have any **questions**, need **support** during installation/running
 2. [Install](mbms-modem#installation) the *MBMS Modem*
 3. [Install](mbms-middleware#installation) the *MBMS Middleware* (in case your payload contains HLS or DASH)
 3. Optional: 
-   * [Install](GUI#installation) the *GUI* 
    * [Install](Webinterface#installation) the *Webinterface* 
-4. [Run](mbms-modem#run-the-mbms-modem) the *MBMS Modem* - optional: [*MBMS Middleware*](mbms-middleware#run-the-mbms-middleware), [*GUI*](GUI#run-the-gui), [*Webinterface*](Webinterface#run-the-webinterface)
+4. [Run](mbms-modem#run-the-mbms-modem) the *MBMS Modem* - optional: [*MBMS Middleware*](mbms-middleware#run-the-mbms-middleware), [*Webinterface*](Webinterface#run-the-webinterface)
 

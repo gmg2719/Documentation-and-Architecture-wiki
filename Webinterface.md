@@ -7,9 +7,8 @@
 
 ## Description
 The *5G-MAG Reference Tools Webinterface* provides an optional graphical webinterface with a control display for each 5G-MAG Reference Tools process (
-MBMS Modem, MBMS Middleware, Application). Its main purpose is to show information of each process. It shows the same information
-as the [GUI](https://github.com/5G-MAG/Documentation-and-Architecture/wiki/GUI), but other than that, the Webinterface
-is accessible via http(s). Thus it works well for remote monitoring any 5G-MAG Reference Tools process.
+MBMS Modem, MBMS Middleware, Application). Its main purpose is to show information of each process. The Webinterface
+is accessible via http(s). Thus, it works well for remote monitoring any 5G-MAG Reference Tools process.
 
 In case you have any **questions**, need **support** during installation/running the 5G-MAG Reference Tools or simply want to **contribute**
 to the project, please contact **[reference-tools@5g-mag.com](mailto:reference-tools@5g-mag.com)**.

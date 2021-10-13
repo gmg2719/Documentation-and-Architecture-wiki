@@ -5,7 +5,6 @@
 * [MBMS Modem](MBMS-Modem)
 * [MBMS Middleware](MBMS-Middleware)
 * [Application Process](Application-Process)
-* [GUI](GUI)
 * [Webinterface](Webinterface)
 
 ### General information

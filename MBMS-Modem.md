@@ -385,8 +385,7 @@ modem: {
 
 ### RestAPI
 
-RestAPI is supported to show and change configuration of the *MBMS Modem*. Also the [RT.GUI](GUI) process is
-accessing the API to collect display information.
+RestAPI is supported to show and change configuration of the *MBMS Modem*.
 
 The API is only accessible when the *MBMS Modem* is running.
 
