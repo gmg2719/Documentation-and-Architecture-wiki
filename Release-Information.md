@@ -2,11 +2,11 @@
 
 ## August 2021
 
-### OBECA.rp
+### rt-mbms-modem
 
 * Rel16: PBCH Repetition, Aggregation Level 16, CFI-Indicator in MIB-MBMS​
 
-### OBECA.gp
+### rt-mbms-mw
 
 * Payloads: DASH native
 
@@ -27,28 +27,28 @@
 
 ## 28.07.2021
 
-### OBECA.gw v0.9.0
+### rt-mbms-mw v0.9.0
 
 * Receive multicast packets
 * Basic Flute/ALC Decoder
 * HLS support
 * caching HLS files on nginx
 
-### OBECA.Webinterface v1.0.0
+### rt-wui v1.0.0
 
 * Receive Process - SDR parameter: frequency, gain, sample rate, filter BW, buffer level, spectrum
 * Receive Process - System parameter: CPU, Mem, Network, CPU temp
 * Receive Process - Constellation diagrams, BLER, BER, MCS: PDSCH, PMCH/MCCH, PMCH/MTCH
 * Receive Process - Sync parameter: Sync status, CFO, Cell ID, PRM, Bandwidth, SCS (subcarrier-spacing)
 * Receive Process - Service information: MCH, MCS, TMGI, Multicast IP and Port
-* Gateway Process - Service Information​: RTP, DASH, HLS Information​
+* Middleware Process - Service Information​: RTP, DASH, HLS Information​
 * Application Process - Click ‘n play: Website with HLS.js/DASH.js player
 
 ***
 
 ## 06.07.2021
 
-### OBECA.rp v1.1.0
+### rt-mbms-modem v1.1.0
 
 * Extended SDR support via [SoapySDR API](https://github.com/pothosware/SoapySDR/wiki)
 * Extended API
@@ -56,21 +56,11 @@
 * Faster build (disabled building of unused srsLTE applications)
 * Minor fixes
 
-### OBECA.obeca-gui v1.1.0
-
-* Receive Process - Adaptions for SoapySDR (gain in dB, rp API changes)
-* Receive Process - Display gain range
-* Receive Process - Display CINR
-* Receive Process - Disabled verification of SSL certs, so self-signed certificates will work in https connections
-* Receive Process - Minor wording fixes
-* Gateway Process - Service Information​: RTP, DASH, HLS Information​
-* Application Process - Click ‘n play: player for RTP Payload​, website with HLS.js/DASH.js player
-
 ***
 
 ## 29.3.2021
 
-### OBECA.rp v1.0
+### rt-mbms-modem v1.0
 
 * Payloads:​ RTP native​, HLS (via 3rd party middleware)​
 * Input: I/Q Data via LimeSDR​ Mini
@@ -86,12 +76,4 @@
 * Run as background process or manual start/stop​
 * SDR support: LimeSDR Mini​
 
-### OBECA.obeca-gui v1.0
 
-* Receive Process - SDR parameter: frequency, gain, sample rate, filter BW, buffer level, spectrum
-* Receive Process - System parameter: CPU, Mem, Network, CPU temp
-* Receive Process - Constellation diagrams, BLER, BER, MCS: PDSCH, PMCH/MCCH, PMCH/MTCH
-* Receive Process - Sync parameter: Sync status, CFO, Cell ID, PRM, Bandwidth, SCS (subcarrier-spacing)
-* Receive Process - Service information: MCH, MCS, TMGI, Multicast IP and Port
-
-***

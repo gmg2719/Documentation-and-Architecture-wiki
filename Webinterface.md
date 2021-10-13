@@ -76,19 +76,19 @@ This will output you the path to your folder. For example:
 
 **Step 2:** Change the ExecStart path
 
-Navigate to the ``obeca-web-interface.service`` file:
+Navigate to the ``rt-web-interface.service`` file:
 
 ````
 cd ~
 cd rt-wui/supporting_files/
 ````
 
-open the ``obeca-web-interface.service`` file with an editor, it should look like this:
+open the ``rt-web-interface.service`` file with an editor, it should look like this:
 
 ````
 [Service]
 < ... >
-ExecStart=/usr/bin/node /home/ofr/workspace/rt-wui/app.js
+ExecStart=/usr/bin/node /home/user/workspace/rt-wui/app.js
 < ... >
 ````
 
@@ -97,7 +97,7 @@ Replace the path to the app.js file with the path from the first step:
 ````
 [Service]
 < ... >
-ExecStart=/usr/bin/node /home/rt-wui/obeca-web-interface/app.js
+ExecStart=/usr/bin/node /home/rt-wui/app.js
 < ... >
 ````
 
@@ -108,10 +108,10 @@ save and exit.
 Copy the file to the systemd folder:
 
 ````
-sudo cp obeca-web-interface.service /lib/systemd/system/
+sudo cp rt-web-interface.service /lib/systemd/system/
 ````
 
-**Step 4:** Relead the daemon
+**Step 4:** Reload the daemon
 
 ````
 sudo systemctl daemon-reload
@@ -122,8 +122,8 @@ webinterface:
 
 | Command | Result |
 | ------------- |-------------|
-|  `` systemctl start obeca-web-interface.service `` | Manually start the process in background |
-|  `` systemctl stop obeca-web-interface.service `` | Manually stop the process in background |
-|  `` systemctl status obeca-web-interface.service `` | Show process status |
-|  `` systemctl disable obeca-web-interface.service `` | Disable autostart, Webinterface will no be started after reboot |
-|  `` systemctl enable obeca-web-interface.service `` | Enable autostart, Webinterface will be started automatically after reboot |
+|  `` systemctl start rt-web-interface.service `` | Manually start the process in background |
+|  `` systemctl stop rt-web-interface.service `` | Manually stop the process in background |
+|  `` systemctl status rt-web-interface.service `` | Show process status |
+|  `` systemctl disable rt-web-interface.service `` | Disable autostart, Webinterface will no be started after reboot |
+|  `` systemctl enable rt-web-interface.service `` | Enable autostart, Webinterface will be started automatically after reboot |

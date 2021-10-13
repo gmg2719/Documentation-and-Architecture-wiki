@@ -1,4 +1,4 @@
-In order to support application developers as well as OBECA contributors for testing their improvements, ORS captured sample files ("raw data" = digitized I/Q data at [LimeSDR Mini](https://www.crowdsupply.com/lime-micro/limesdr-mini/) output) directly from a 5G BC transmitter. You can also capture sample files using the [capture command of the Receive Process](receive-process#Capture-and-running-of-sample-files).
+In order to support application developers as well as 5G-MAG contributors for testing their improvements, ORS captured sample files ("raw data" = digitized I/Q data at [LimeSDR Mini](https://www.crowdsupply.com/lime-micro/limesdr-mini/) output) directly from a 5G BC transmitter. You can also capture sample files using the [capture command of the Receive Process](receive-process#Capture-and-running-of-sample-files).
 
 #### RTP payload:
 3 MHz bandwidth, subcarrier spacing 1.25 kHz, Modulation Coding Scheme 16 (16QAM) with Payload 3.5 Mbit RTP:

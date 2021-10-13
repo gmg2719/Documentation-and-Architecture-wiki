@@ -17,7 +17,7 @@ The 5G-MAG reference tools consist of five different repositories:
 <img src="https://github.com/5G-MAG/Documentation-and-Architecture/blob/main/media/wiki/concept.png">
 
 
-In case you have any **questions**, need **support** during installation/running OBECA or simply want to **contribute** to the project, please contact **[reference-tools@5g-mag.com](mailto:reference-tools@5g-mag.com)**.
+In case you have any **questions**, need **support** during installation/running 5G-MAG reference tools or simply want to **contribute** to the project, please contact **[reference-tools@5g-mag.com](mailto:reference-tools@5g-mag.com)**.
 
 ***
 ## Quickstart
